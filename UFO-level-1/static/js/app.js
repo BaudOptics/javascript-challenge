@@ -45,6 +45,7 @@ function search(){
     d3.event.preventDefault();
     let input = d3.select('#datetime');
     let inputText = input.property('value');
+    
 
     console.log(`search terms: ${inputText}`)
 
@@ -63,10 +64,18 @@ function search(){
         console.log(results)
     }
     else{
+        d3.select("#ufo-table")
+                .select("tbody")
+                .text("")
         results.forEach(result=>{
             console.log(result)
-            table.select('tr')
             
+            let row = table.append('tr');
+            Object.entries(result).forEach(([key,value])=>{
+                //console.log(`Key: ${key} Value: ${value}`)
+                let cell = row.append("td");
+                cell.text(value)
+            })
         })
     }
 
